@@ -1,10 +1,22 @@
 import * as Prismic from '@prismicio/client';
+import { RichText } from 'prismic-dom';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import { getPrismicClient } from '../../services/prismic';
 import styles from './styles.module.scss';
 
-const Posts: React.FC = () => {
+type Post = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  updatedAt: string;
+};
+
+interface PostsProps {
+  posts: Post[];
+}
+
+const Posts: React.FC<PostsProps> = ({ posts }) => {
   return (
     <>
       <Head>
@@ -13,30 +25,13 @@ const Posts: React.FC = () => {
 
       <main className={styles.container}>
         <div className={styles.posts}>
-          <a href="#" rel="noopener noreferrer">
-            <time>12 de março de 2021</time>
-            <strong>Creating a Monorepo with lerna and yarn workspaces</strong>
-            <p>
-              In this guide. you will learn hew to create a monotepo to manage
-              multiple packages with a shared
-            </p>
-          </a>
-          <a href="#" rel="noopener noreferrer">
-            <time>12 de março de 2021</time>
-            <strong>Creating a Monorepo with lerna and yarn workspaces</strong>
-            <p>
-              In this guide. you will learn hew to create a monotepo to manage
-              multiple packages with a shared
-            </p>
-          </a>
-          <a href="#" rel="noopener noreferrer">
-            <time>12 de março de 2021</time>
-            <strong>Creating a Monorepo with lerna and yarn workspaces</strong>
-            <p>
-              In this guide. you will learn hew to create a monotepo to manage
-              multiple packages with a shared
-            </p>
-          </a>
+          {posts.map(post => (
+            <a key={post.slug} href="#">
+              <time>{post.updatedAt}</time>
+              <strong>{post.title}</strong>
+              <p>{post.excerpt}</p>
+            </a>
+          ))}
         </div>
       </main>
     </>
@@ -46,7 +41,7 @@ const Posts: React.FC = () => {
 export const getStaticProps: GetStaticProps = async () => {
   const prismic = getPrismicClient();
 
-  const response = await prismic.query(
+  const response = await prismic.query<any>(
     [Prismic.predicates.at('document.type', 'publication')],
     {
       fetch: ['publication.title', 'publication.content'],
@@ -54,9 +49,24 @@ export const getStaticProps: GetStaticProps = async () => {
     }
   );
 
-  console.log('response: ', response);
+  const posts = response.results.map(post => ({
+    slug: post.uid,
+    title: RichText.asText(post.data.title),
+    excerpt:
+      post.data.content.find(content => content.type === 'paragraph')?.text ??
+      '',
+    updatedAt: new Date(post.last_publication_date).toLocaleDateString(
+      'pt-BR',
+      {
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric',
+      }
+    ),
+  }));
+
   return {
-    props: {},
+    props: { posts },
   };
 };
 
