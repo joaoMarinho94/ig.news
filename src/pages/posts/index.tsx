@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { RichText } from 'prismic-dom';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
+import { useSession } from 'next-auth/react';
 import { getPrismicClient } from '../../services/prismic';
 import styles from './styles.module.scss';
 
@@ -18,6 +19,8 @@ interface PostsProps {
 }
 
 const Posts: React.FC<PostsProps> = ({ posts }) => {
+  const { data: session } = useSession();
+
   return (
     <>
       <Head>
@@ -27,7 +30,14 @@ const Posts: React.FC<PostsProps> = ({ posts }) => {
       <main className={styles.container}>
         <div className={styles.posts}>
           {posts.map(post => (
-            <Link href={`/posts/${post.slug}`}>
+            <Link
+              key={post.slug}
+              href={
+                session?.user?.email
+                  ? `/posts/${post.slug}`
+                  : `/posts/preview/${post.slug}`
+              }
+            >
               <a key={post.slug}>
                 <time>{post.updatedAt}</time>
                 <strong>{post.title}</strong>
