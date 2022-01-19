@@ -10,8 +10,7 @@
     "coverage": "jest --coverage"
   },
   "dependencies": {
-    "@prismicio/client": "^6.1.0",
-    "@prismicio/react": "^2.0.3",
+    "@prismicio/client": "5.1.1",
     "@stripe/stripe-js": "^1.21.2",
     "axios": "0.21.1",
     "faunadb": "^4.4.1",
