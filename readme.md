@@ -31,9 +31,9 @@ As seguintes tecnologias foram utilizadas no projeto:
 ## :framed_picture: Prints da Aplicação ##
 
 <h1 align="center">
-    <img alt = "Web app" src = "./.github/image-01.png" width = "500px" />
-    <img alt = "Web app" src = "./.github/image-02.PNG" width = "500px" />
-    <img alt = "Web app" src = "./.github/image-03.PNG" width = "500px" />
-    <img alt = "Web app" src = "./.github/image-04.PNG" width = "500px" />
-    <img alt = "Web app" src = "./.github/image-05.PNG" width = "500px" />
+    <img alt = "Web app" src = "./.github/image-01.png" />
+    <img alt = "Web app" src = "./.github/image-02.PNG" />
+    <img alt = "Web app" src = "./.github/image-03.PNG" />
+    <img alt = "Web app" src = "./.github/image-04.PNG" />
+    <img alt = "Web app" src = "./.github/image-05.PNG" />
 </h1>
