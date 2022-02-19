@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { render, screen } from '@testing-library/react';
-import { mocked } from 'ts-jest/utils';
+import { mocked } from 'jest-mock';
 import { useSession } from 'next-auth/react';
 import { SignInButton } from './index';
 

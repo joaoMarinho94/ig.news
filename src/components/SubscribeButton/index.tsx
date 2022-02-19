@@ -4,15 +4,11 @@ import { api } from '../../services/api';
 import { getStripeJs } from '../../services/stripe-js';
 import styles from './styles.module.scss';
 
-interface Props {
-  priceId: string;
-}
-
 interface ResponseApiSubscribe {
   sessionId: string;
 }
 
-export function SubscribeButton({ priceId }: Props): JSX.Element {
+export function SubscribeButton(): JSX.Element {
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -23,7 +19,7 @@ export function SubscribeButton({ priceId }: Props): JSX.Element {
     }
 
     if (session.activeSubscription) {
-      router.push('posts');
+      router.push('/posts');
       return;
     }
 
