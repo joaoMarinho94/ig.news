@@ -8,7 +8,7 @@ import styles from './home.module.scss';
 interface Props {
   product: {
     priceId: string;
-    amount: number;
+    amount: string;
   };
 }
 
@@ -27,7 +27,7 @@ export default function Home({ product }: Props): JSX.Element {
             Get access to all the publications <br />
             <span>for {product.amount} month</span>
           </p>
-          <SubscribeButton priceId={product.priceId} />
+          <SubscribeButton />
         </section>
 
         <img src="/img/avatar.svg" alt="Girl coding" />
