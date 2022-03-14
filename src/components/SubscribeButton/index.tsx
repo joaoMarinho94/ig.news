@@ -24,10 +24,12 @@ export function SubscribeButton(): JSX.Element {
     }
 
     try {
-      const { data } = await api.post<ResponseApiSubscribe>('/subscribe');
+      const {
+        data: { sessionId },
+      } = await api.post<ResponseApiSubscribe>('/subscribe');
 
       const stripe = await getStripeJs();
-      await stripe.redirectToCheckout({ sessionId: data.sessionId });
+      await stripe.redirectToCheckout({ sessionId });
     } catch (error) {
       console.error('error: ', error);
     }
