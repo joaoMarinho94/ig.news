@@ -14,10 +14,11 @@ type User = {
 export default async (
   req: NextApiRequest,
   res: NextApiResponse
-): Promise<void> => {
+): Promise<any> => {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
-    return res.status(405).end('Method not allowed');
+    res.status(405).end('Method not allowed');
+    return;
   }
 
   const session = await getSession({ req });
@@ -54,5 +55,5 @@ export default async (
     cancel_url: process.env.STRIPE_CANCEL_URL,
   });
 
-  return res.status(200).json({ sessionId: stripeCheckoutSession.id });
+  res.status(200).json({ sessionId: stripeCheckoutSession.id });
 };

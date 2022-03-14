@@ -31,10 +31,11 @@ const relevantEvents = new Set([
 export default async (
   req: NextApiRequest,
   res: NextApiResponse
-): Promise<void> => {
+): Promise<any> => {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
-    return res.status(405).end('Method not allowed');
+    res.status(405).end('Method not allowed');
+    return;
   }
 
   const buf = await buffer(req);
@@ -49,7 +50,8 @@ export default async (
       process.env.STRIPE_WEBHOOK_SECRET
     );
   } catch (error) {
-    return res.status(400).send(`Webhook error: ${error.message}`);
+    res.status(400).send(`Webhook error: ${error.message}`);
+    return;
   }
 
   const { type } = event;
@@ -82,9 +84,10 @@ export default async (
           throw new Error('Unhandled event.');
       }
     } catch (error) {
-      return res.json({ error: 'Webhook handler failed.' });
+      res.json({ error: 'Webhook handler failed.' });
+      return;
     }
   }
 
-  return res.json({ receive: true });
+  res.json({ receive: true });
 };
