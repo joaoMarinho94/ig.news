@@ -2,7 +2,7 @@
 
 <p align="center">
   IGNEWS - Blog de Notícias sobre Tecnologia
-  <br>
+</p>
 
 <p align="center">
   <a href="#dart-sobre">Sobre</a> &#xa0; | &#xa0;
@@ -11,6 +11,8 @@
 </p>
 
 <br>
+
+## :link: [Acessar Projeto](https://ig-news-joaomarinho94.vercel.app/) ##
 
 ## :dart: Sobre ##
 
@@ -27,6 +29,13 @@ As seguintes tecnologias foram utilizadas no projeto:
 - [Stripe](https://stripe.com/)
 - [FaunaDB](https://fauna.com/)
 - [Next/auth](https://next-auth.js.org/)
+
+## :hammer_and_wrench: Melhorias ##
+
+Implementado as seguintes melhorias no projeto:
+
+- :x: responsividade das páginas (mobile, tablets e desktop)
+- :heavy_check_mark: validações adicionais
 
 ## :framed_picture: Prints da Aplicação ##
 
