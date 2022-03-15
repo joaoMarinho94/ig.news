@@ -34,7 +34,7 @@ As seguintes tecnologias foram utilizadas no projeto:
 
 Implementado as seguintes melhorias no projeto:
 
-- :x: responsividade das páginas (mobile, tablets e desktop)
+- :heavy_check_mark: responsividade das páginas (mobile, tablets e desktop)
 - :heavy_check_mark: validações adicionais
 
 <h2 id="prints">:framed_picture: Prints da Aplicação</h2>
