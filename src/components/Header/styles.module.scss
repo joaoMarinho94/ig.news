@@ -51,4 +51,14 @@
   button {
     margin-left: auto;
   }
+
+  @media  (max-width: 550px) {
+    img{
+      width: 6rem;
+    }
+
+    nav{
+      margin-left: 2rem;
+    }
+  }
 }
